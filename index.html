@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-item" id="loginNav" style="display: none;">
+                    <button class="nav-link" onclick="showLogin()">Login</button>
+                </div>
+                <div class="nav-item" id="registerNav" style="display: none;">
+                    <button class="nav-link" onclick="showRegister()">Register</button>
+                </div>
+                <div class="nav-item" id="userNav" style="display: none;">
+                    <span class="nav-user" id="userInfo"></span>
+                    <button class="nav-link logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Login Form -->
+        <div id="loginSection" class="auth-section">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginUsername">Username</label>
+                            <input type="text" id="loginUsername" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+                    <p class="auth-switch">
+                        Don't have an account? 
+                        <a href="#" onclick="showRegister()">Register here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="registerSection" class="auth-section" style="display: none;">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h2><i class="fas fa-user-plus"></i> Register</h2>
+                    <form id="registerForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="regFirstName">First Name</label>
+                            <input type="text" id="regFirstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regLastName">Last Name</label>
+                            <input type="text" id="regLastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regUsername">Username</label>
+                            <input type="text" id="regUsername" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" id="regPassword" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Register
+                        </button>
+                    </form>
+                    <p class="auth-switch">
+                        Already have an account? 
+                        <a href="#" onclick="showLogin()">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Management Section -->
+        <div id="contactSection" class="contact-section" style="display: none;">
+            <div class="contact-container">
+                <!-- Header -->
+                <div class="contact-header">
+                    <h2><i class="fas fa-address-book"></i> My Contacts</h2>
+                    <button class="btn btn-primary" onclick="showAddContactForm()">
+                        <i class="fas fa-plus"></i> Add Contact
+                    </button>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search contacts..." onkeyup="searchContacts()">
+                    </div>
+                </div>
+
+                <!-- Add Contact Form -->
+                <div id="addContactForm" class="add-contact-form" style="display: none;">
+                    <div class="form-card">
+                        <h3><i class="fas fa-user-plus"></i> Add New Contact</h3>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactFirstName">First Name</label>
+                                    <input type="text" id="contactFirstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactLastName">Last Name</label>
+                                    <input type="text" id="contactLastName" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactPhone">Phone</label>
+                                    <input type="tel" id="contactPhone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email</label>
+                                    <input type="email" id="contactEmail" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Contact
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="hideAddContactForm()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contacts List -->
+                <div class="contacts-container">
+                    <div id="contactsList" class="contacts-list">
+                        <!-- Contacts will be dynamically loaded here -->
+                    </div>
+                    <div id="noContacts" class="no-contacts" style="display: none;">
+                        <i class="fas fa-address-book"></i>
+                        <h3>No contacts found</h3>
+                        <p>Start by adding your first contact!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Alert Messages -->
+    <div id="alertContainer" class="alert-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
