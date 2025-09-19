@@ -63,7 +63,7 @@ async function handleLogin(e) {
             
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             showContactSection();
-            showAlert('success', `Welcome back, ${response.firstName}!`);
+            showAlert('success', `Welcome back to the kingdom, ${response.firstName}! 👑`);
         }
     } catch (error) {
         showAlert('error', 'Login failed. Please try again.');
@@ -99,7 +99,7 @@ async function handleRegister(e) {
             
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             showContactSection();
-            showAlert('success', `Welcome, ${response.firstName}! Your account has been created.`);
+            showAlert('success', `Welcome to Knightro's Kingdom, ${response.firstName}! Your citizenship has been granted. 👑`);
         }
     } catch (error) {
         showAlert('error', 'Registration failed. Please try again.');
@@ -129,7 +129,7 @@ async function handleAddContact(e) {
         if (response.error) {
             showAlert('error', response.error);
         } else {
-            showAlert('success', 'Contact added successfully!');
+            showAlert('success', 'Citizen added to the kingdom successfully! 👑');
             e.target.reset();
             hideAddContactForm();
             // Refresh the contacts list
@@ -288,7 +288,7 @@ function logout() {
     contacts = [];
     localStorage.removeItem('currentUser');
     showLogin();
-    showAlert('info', 'You have been logged out.');
+    showAlert('info', 'You have left the kingdom. Long live Knightro! 👑');
 }
 
 // Utility Functions
@@ -322,11 +322,18 @@ function showAlert(type, message) {
     alert.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <span>${message}</span>
-            <button onclick="closeAlert('${alertId}')" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; margin-left: 1rem;">&times;</button>
+            <button onclick="closeAlert('${alertId}')" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; margin-left: 1rem; color: #FFD700;">&times;</button>
         </div>
     `;
     
     alertContainer.appendChild(alert);
+    
+    // Add touchdown effect for success messages
+    if (type === 'success') {
+        setTimeout(() => {
+            alert.classList.add('touchdown-effect');
+        }, 100);
+    }
     
     // Auto-remove after 5 seconds
     setTimeout(() => {
@@ -376,3 +383,4 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+

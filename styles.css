@@ -6,26 +6,43 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #000;
-    background: #fff;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
     min-height: 100vh;
+    position: relative;
+}
+
+/* UCF Stadium Background Pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.05) 50%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* Navigation */
 .navbar {
-    background: #fff;
-    border-bottom: 1px solid #000;
+    background: linear-gradient(90deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    border-bottom: 3px solid #FFD700;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
 }
 
 .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
+    width: 100%;
+    padding: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,50 +51,76 @@ body {
 .nav-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #000;
+    color: #FFD700;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    padding-left: 1rem;
 }
 
 .nav-brand i {
     font-size: 1.8rem;
+    color: #FFD700;
+}
+
+.knightro-logo {
+    height: 40px;
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+
+@keyframes knightGlow {
+    from { text-shadow: 0 0 5px #FFD700; }
+    to { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700; }
 }
 
 .nav-menu {
     display: flex;
     align-items: center;
     gap: 1rem;
+    padding-right: 1rem;
 }
 
 .nav-link {
-    background: none;
-    border: 1px solid #000;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border: 2px solid #FFD700;
     color: #000;
     cursor: pointer;
     padding: 0.5rem 1rem;
     font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link:hover {
-    background: #000;
-    color: #fff;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    color: #FFD700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
 .logout-btn {
-    background: #000;
-    color: #fff;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    color: #FFD700;
+    border: 2px solid #FFD700;
 }
 
 .logout-btn:hover {
-    background: #fff;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
     color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
 .nav-user {
-    color: #000;
+    color: #FFD700;
     font-weight: 500;
     margin-right: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 /* Main Content */
@@ -95,25 +138,70 @@ body {
     min-height: 70vh;
 }
 
+.auth-layout {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1000px;
+    width: 100%;
+}
+
 .auth-container {
     width: 100%;
     max-width: 400px;
 }
 
 .auth-card {
-    background: #fff;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
     padding: 2rem;
-    border: 1px solid #000;
+    border: 3px solid #FFD700;
     text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    animation: stadiumLight 3s linear infinite;
+    pointer-events: none;
+}
+
+.knightro-sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.knightro-right {
+    height: 300px;
+    width: auto;
+}
+
+
+@keyframes stadiumLight {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .auth-card h2 {
-    color: #000;
+    color: #FFD700;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
 }
 
 .auth-form {
@@ -129,79 +217,219 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #000;
+    color: #FFD700;
     font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
 }
 
 .form-group input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #000;
+    border: 2px solid #FFD700;
     font-size: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFD700;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .form-group input:focus {
     outline: none;
-    border: 2px solid #000;
+    border: 2px solid #FFA500;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    transform: scale(1.02);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 215, 0, 0.6);
 }
 
 .auth-switch {
     margin-top: 1rem;
-    color: #000;
+    color: #FFD700;
+    position: relative;
+    z-index: 1;
 }
 
 .auth-switch a {
-    color: #000;
+    color: #FFA500;
     text-decoration: underline;
     font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .auth-switch a:hover {
     text-decoration: none;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 }
 
 /* Buttons */
 .btn {
     padding: 0.75rem 1.5rem;
-    border: 1px solid #000;
+    border: 2px solid #FFD700;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: bold;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Normal buttons */
+.btn-sword {
+    position: relative;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border: 2px solid #FFD700;
+    color: #000;
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    text-align: center;
+    min-width: 120px;
+    white-space: nowrap;
+}
+
+.btn-sword:hover {
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    color: #FFD700;
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+}
+
+.btn-sword::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-sword:hover::before {
+    left: 100%;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
 }
 
 .btn-primary {
-    background: #000;
-    color: #fff;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 .btn-primary:hover {
-    background: #fff;
-    color: #000;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    color: #FFD700;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
 }
 
 .btn-secondary {
-    background: #fff;
-    color: #000;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    color: #FFD700;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
 }
 
 .btn-secondary:hover {
-    background: #000;
-    color: #fff;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
 }
 
 /* Contact Section */
 .contact-section {
-    background: #fff;
-    border: 1px solid #000;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    border: 3px solid #FFD700;
     overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
+    position: relative;
 }
 
 .contact-container {
     padding: 2rem;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+    animation: stadiumLights 2s linear infinite;
+}
+
+@keyframes stadiumLights {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.knightro-bottom {
+    position: fixed;
+    bottom: 0;
+    right: 4rem;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.knightro-bottom img {
+    height: 600px;
+    transition: all 0.3s ease;
+}
+
+.knightro-main {
+    height: 400px;
+    width: auto;
+    filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8));
+    animation: knightroMainGlow 5s ease-in-out infinite alternate;
+    transform: translateY(20px);
+}
+
+@keyframes knightroMainGlow {
+    from { 
+        filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8));
+        transform: scale(1);
+    }
+    to { 
+        filter: drop-shadow(0 0 60px rgba(255, 215, 0, 1));
+        transform: scale(1.05);
+    }
 }
 
 .contact-header {
@@ -214,11 +442,14 @@ body {
 }
 
 .contact-header h2 {
-    color: #000;
+    color: #FFD700;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin: 0;
 }
+
 
 /* Search Container */
 .search-container {
@@ -235,19 +466,35 @@ body {
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #999;
+    color: #FFD700;
+    animation: searchPulse 2s ease-in-out infinite;
+}
+
+@keyframes searchPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
 }
 
 .search-box input {
     width: 100%;
     padding: 0.75rem 1rem 0.75rem 3rem;
-    border: 1px solid #000;
+    border: 2px solid #FFD700;
     font-size: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFD700;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .search-box input:focus {
     outline: none;
-    border: 2px solid #000;
+    border: 2px solid #FFA500;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    transform: scale(1.02);
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 215, 0, 0.6);
 }
 
 /* Add Contact Form */
@@ -256,17 +503,20 @@ body {
 }
 
 .form-card {
-    background: #fff;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
     padding: 1.5rem;
-    border: 1px solid #000;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
 }
 
 .form-card h3 {
-    color: #000;
+    color: #FFD700;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .contact-form {
@@ -298,35 +548,64 @@ body {
 }
 
 .contact-card {
-    background: #fff;
-    border: 1px solid #000;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    border: 2px solid #FFD700;
     padding: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-card:hover::before {
+    left: 100%;
 }
 
 .contact-card:hover {
-    background: #f0f0f0;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    border-color: #FFA500;
 }
 
 .contact-info h4 {
-    color: #000;
+    color: #FFD700;
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
 }
 
 .contact-details {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    color: #000;
+    color: #FFA500;
+    position: relative;
+    z-index: 1;
 }
 
 .contact-details i {
     width: 16px;
-    color: #000;
+    color: #FFD700;
 }
+
 
 .contact-actions {
     display: flex;
@@ -339,40 +618,54 @@ body {
 }
 
 .btn-edit {
-    background: #fff;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
     color: #000;
+    border: 2px solid #FFD700;
 }
 
 .btn-edit:hover {
-    background: #000;
-    color: #fff;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    color: #FFD700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
 .btn-delete {
-    background: #000;
-    color: #fff;
+    background: linear-gradient(45deg, #000000, #1a1a1a);
+    color: #FFD700;
+    border: 2px solid #FFD700;
 }
 
 .btn-delete:hover {
-    background: #fff;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
     color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
 .no-contacts {
     text-align: center;
     padding: 3rem;
-    color: #000;
+    color: #FFD700;
 }
 
 .no-contacts i {
     font-size: 4rem;
-    color: #000;
+    color: #FFD700;
     margin-bottom: 1rem;
 }
 
+.knightro-empty {
+    height: 120px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
+
 .no-contacts h3 {
     margin-bottom: 0.5rem;
-    color: #000;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* Loading Spinner */
@@ -393,10 +686,11 @@ body {
 .spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #000;
+    border: 4px solid rgba(255, 215, 0, 0.3);
+    border-top: 4px solid #FFD700;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
 @keyframes spin {
@@ -420,21 +714,24 @@ body {
 }
 
 .alert-success {
-    background: #fff;
-    color: #000;
-    border: 1px solid #000;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    color: #FFD700;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 .alert-error {
-    background: #fff;
-    color: #000;
-    border: 1px solid #000;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    color: #FFD700;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 .alert-info {
-    background: #fff;
-    color: #000;
-    border: 1px solid #000;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    color: #FFD700;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 @keyframes slideIn {
@@ -448,6 +745,108 @@ body {
     }
 }
 
+/* Sword-shaped decorative elements */
+.sword-divider {
+    position: relative;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FFD700, transparent);
+    margin: 2rem 0;
+}
+
+.sword-divider::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 16px solid #FFD700;
+}
+
+.sword-divider::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -6px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 12px solid #FFD700;
+}
+
+/* Sword-shaped contact cards */
+.contact-card-sword {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    border: 2px solid #FFD700;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%, 5% 50%);
+}
+
+.contact-card-sword:hover {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    border-color: #FFA500;
+}
+
+/* UCF Stadium Effects */
+.contact-card:nth-child(odd) {
+    animation: stadiumSeat1 4s ease-in-out infinite;
+}
+
+.contact-card:nth-child(even) {
+    animation: stadiumSeat2 4s ease-in-out infinite;
+}
+
+@keyframes stadiumSeat1 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-2px); }
+}
+
+@keyframes stadiumSeat2 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(2px); }
+}
+
+/* Touchdown Celebration Effect */
+@keyframes touchdown {
+    0% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(2deg); }
+    50% { transform: scale(1.05) rotate(-2deg); }
+    75% { transform: scale(1.1) rotate(1deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.touchdown-effect {
+    animation: touchdown 0.6s ease-in-out;
+}
+
+/* Stadium Lights Effect */
+@keyframes stadiumLights {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.3);
+    }
+}
+
+.stadium-lights {
+    animation: stadiumLights 3s ease-in-out infinite;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-container {
@@ -458,6 +857,19 @@ body {
 
     .main-content {
         padding: 1rem;
+    }
+
+    .auth-layout {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .knightro-sidebar {
+        order: -1;
+    }
+
+    .knightro-right {
+        height: 200px;
     }
 
     .contact-header {
@@ -500,5 +912,9 @@ body {
 
     .form-card {
         padding: 1rem;
+    }
+
+    .knightro-right {
+        height: 150px;
     }
 }
